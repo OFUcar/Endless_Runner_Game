@@ -34,7 +34,6 @@ public class PlayerMovement : MonoBehaviour
     }
     void Update()
     {
-        //Sağ klik ile başlangıç
         if (!isGameRunning && Input.GetMouseButtonDown(0))
         {
             isGameRunning = true;
@@ -46,10 +45,6 @@ public class PlayerMovement : MonoBehaviour
         }
         MoveTowardTargetPosition();
     }
-    
-
-
-
     private void StartMovementDirection()
     {
         startTime = Time.time;

@@ -15,47 +15,57 @@ public class NewBehaviourScript : MonoBehaviour
     private float[] _lanePositions;
     void Start()
     {
-        int numberOfLanes = 5;
-        _lanePositions = new float[numberOfLanes];
-        float laneXPosition = -(numberOfLanes - 1) / 2f * laneWith;
-
-        for(int i = 0; i < numberOfLanes; i++)
-        {
-            _lanePositions[i] = laneXPosition + i * laneWith;
-        }   
-
-        // Ýlk spawn zamaný ayarlamk için 
-        _nextSpawnTime = Time.time + SpawnInterval;
+        InitializedLanes(); 
+        ScheduleSpawnTime();
     }
 
     void Update()
     {
-        // þu anda obje tanýmlayacak. belirli zaman aralýklarýnda onun if bloðu
         if (Time.time >= _nextSpawnTime)
         {
             SpawnObject();
-            // sonrasýnda bu döngü tekrar edecek. yani zamaný geldikçe yeni obje-->spawn
-            _nextSpawnTime = Time.time + SpawnInterval; // deltatime ile çarpmak lazým mý ??
-
         }
     }
     void SpawnObject()
     {
-        // Rastgele bir obje seçimimiz var
         GameObject objectsToSpawn_1 = objectsToSpawn[Random.Range(0, objectsToSpawn.Length)];
 
-        // random pozisyon belirleme
+        Vector3 spawnPosition = new Vector3(
+            CreateObjectAndSpawn(),
+            PlayerMovementY(),
+            PlayerMovementZ()
+        );
+        Instantiate(objectsToSpawn_1, spawnPosition, Quaternion.identity);
+    }
 
+    private void InitializedLanes()
+    {
+        int numberOfLanes = 5;
+        _lanePositions = new float[numberOfLanes];
+        float laneXPosition = -(numberOfLanes - 1) / 2f * laneWith;
+
+        for (int i = 0; i < numberOfLanes; i++)
+        {
+            _lanePositions[i] = laneXPosition + i * laneWith;
+        }
+    }
+    private void ScheduleSpawnTime()
+    {
+        _nextSpawnTime = Time.time + SpawnInterval; 
+    }
+    private float PlayerMovementY()
+    {
+        return playerMovementInheritance.transform.position.y;
+    }
+    private float PlayerMovementZ()
+    {
+        return playerMovementInheritance.transform.position.z + 7;
+    }
+
+    private float CreateObjectAndSpawn()
+    {
         int randomLane = Random.Range(0, _lanePositions.Length);
         float spawnXLane = _lanePositions[randomLane];
-
-        Vector3 spawnPosition = new Vector3(
-            //Random.Range(-4, 4), // yatayda random pozisyonlama
-            spawnXLane,
-            playerMovementInheritance.transform.position.y, // y deki yeri korumak için
-            playerMovementInheritance.transform.position.z + 7  //transform.position.z + Random.Range(15 /*  0  */, 500)  // dikeyde random pozisyonlama
-        );
-        // Trap objesi gelen sonuçtaki yere spawnlama
-        Instantiate(objectsToSpawn_1, spawnPosition, Quaternion.identity);
+        return spawnXLane;
     }
 }

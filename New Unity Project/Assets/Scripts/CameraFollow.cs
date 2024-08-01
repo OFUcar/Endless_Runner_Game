@@ -21,6 +21,7 @@ public class CameraFollow : MonoBehaviour
         transform.position += (direction * cameraFollowSpeed * Time.deltaTime);
         
     }
+    
 }
 
 
