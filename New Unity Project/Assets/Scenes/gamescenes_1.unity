@@ -167,7 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0df339be9529994bbe47c91ea148124, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerMovementInheritance: {fileID: 1961590638}
+  playerMovement: {fileID: 1961590638}
   objectsToSpawn:
   - {fileID: 613478301}
   - {fileID: 613478301}
@@ -305,7 +305,7 @@ GameObject:
   - component: {fileID: 613478304}
   - component: {fileID: 613478303}
   m_Layer: 0
-  m_Name: Trap
+  m_Name: Trap_
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -889,11 +889,12 @@ MonoBehaviour:
   startLane: 2
   distanceLane: 2
   moveSpeed: 3
-  startMarker: {fileID: 2067689534}
-  endMarker: {fileID: 986313399}
   lineSwitchSpeed: 30
   startTime: 0
   journeyLength: 0
+  collisionPauseDuration: 2
+  startMarker: {fileID: 2067689534}
+  endMarker: {fileID: 986313399}
   targetPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &2067689530
 GameObject:

@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class NewBehaviourScript : MonoBehaviour
 {
-    public PlayerMovement playerMovementInheritance;
+    public PlayerMovement playerMovement;
 
     public GameObject[] objectsToSpawn;
+
     public float SpawnInterval = 3f;
     public float verticalRange = 0f;
     public float laneWith = 2f;
-
     private float _nextSpawnTime;
     private float[] _lanePositions;
+
     void Start()
     {
         InitializedLanes(); 
@@ -24,17 +25,21 @@ public class NewBehaviourScript : MonoBehaviour
         if (Time.time >= _nextSpawnTime)
         {
             SpawnObject();
+            ScheduleSpawnTime();
         }
     }
+
     void SpawnObject()
     {
         GameObject objectsToSpawn_1 = objectsToSpawn[Random.Range(0, objectsToSpawn.Length)];
 
+        Vector3 playerPosition = playerMovement.transform.position;
         Vector3 spawnPosition = new Vector3(
-            CreateObjectAndSpawn(),
-            PlayerMovementY(),
-            PlayerMovementZ()
+            GetRandomLanePositionX(),
+            playerPosition.y,
+            playerPosition.z + 7
         );
+
         Instantiate(objectsToSpawn_1, spawnPosition, Quaternion.identity);
     }
 
@@ -53,16 +58,8 @@ public class NewBehaviourScript : MonoBehaviour
     {
         _nextSpawnTime = Time.time + SpawnInterval; 
     }
-    private float PlayerMovementY()
-    {
-        return playerMovementInheritance.transform.position.y;
-    }
-    private float PlayerMovementZ()
-    {
-        return playerMovementInheritance.transform.position.z + 7;
-    }
 
-    private float CreateObjectAndSpawn()
+    private float GetRandomLanePositionX()
     {
         int randomLane = Random.Range(0, _lanePositions.Length);
         float spawnXLane = _lanePositions[randomLane];
