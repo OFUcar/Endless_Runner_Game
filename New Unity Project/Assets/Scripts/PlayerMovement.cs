@@ -25,11 +25,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
-        //Hareketin başlangıç zamanı ve yolculuk uzunluk hesabı //Lerp
-        startTime = Time.time;
-        journeyLength = Vector3.Distance(startMarker.position, endMarker.position);
-        //Başlangıç pozisyonu
-        targetPosition = transform.position;
+        StartMovementDirection();
     }
 
     void FixedUpdate()
@@ -45,32 +41,65 @@ public class PlayerMovement : MonoBehaviour
         }
         if (isGameRunning) 
         {
-            transform.position += Vector3.forward * moveSpeed * Time.deltaTime;
+            MovePlayerForward();
+            ManuelLaneChange();
+        }
+        MoveTowardTargetPosition();
+    }
+    
 
-            //Sağ ve sol şeride gitme --->
-            if (Input.GetKeyDown(KeyCode.A) && startLane > minLane)
-            {
-                startLane--;
-            }
-            if (Input.GetKeyDown(KeyCode.D) && startLane < maxLane)
-            {
-                startLane++;
-            }
-            targetPosition = new Vector3(startLane * distanceLane - (distanceLane * 2), transform.position.y, transform.position.z);            
+
+
+    private void StartMovementDirection()
+    {
+        startTime = Time.time;
+        journeyLength = Vector3.Distance(startMarker.position, endMarker.position);
+        targetPosition = transform.position;
+    }
+
+    private void MovePlayerForward()
+    {
+        transform.position += Vector3.forward * moveSpeed * Time.deltaTime;
+    }
+
+    private void ManuelLaneChange()
+    {
+        if (Input.GetKeyDown(KeyCode.A) && startLane > minLane)
+        {
+            startLane--;
+        }
+        if (Input.GetKeyDown(KeyCode.D) && startLane < maxLane)
+        {
+            startLane++;
         }
 
+        targetPosition = new Vector3(startLane * distanceLane - (distanceLane * 2), transform.position.y, transform.position.z);
+    }
 
-
-
-
-
-        // Şerit değiştirme konumu hedef ---> Lerp yerine anında değişim
-
+    private void MoveTowardTargetPosition()
+    {
         transform.position = Vector3.MoveTowards(transform.position, targetPosition, lineSwitchSpeed * Time.deltaTime);
+    }
 
-
-    }    
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*yatayda hareket(line switch)
 random object spawn (sadece spawn olsunlar random şekilde) :
 objelerin aralıklarını yatayda ve dikeyde biz kontrol edebilelim.

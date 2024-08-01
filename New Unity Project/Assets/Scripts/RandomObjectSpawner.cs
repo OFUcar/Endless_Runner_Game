@@ -8,13 +8,11 @@ public class NewBehaviourScript : MonoBehaviour
 
     public GameObject[] objectsToSpawn;
     public float SpawnInterval = 3f;
-    //public float horizontalRange = 10f;
     public float verticalRange = 0f;
     public float laneWith = 2f;
 
     private float _nextSpawnTime;
     private float[] _lanePositions;
-    // Start is called before the first frame update
     void Start()
     {
         int numberOfLanes = 5;
@@ -30,7 +28,6 @@ public class NewBehaviourScript : MonoBehaviour
         _nextSpawnTime = Time.time + SpawnInterval;
     }
 
-    // Update is called once per frame
     void Update()
     {
         // þu anda obje tanýmlayacak. belirli zaman aralýklarýnda onun if bloðu
