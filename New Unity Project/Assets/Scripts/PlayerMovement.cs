@@ -6,43 +6,122 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private Rigidbody _rigidbody;
-    public float moveSpeed = 50f;
-    public float jumpSpeed;
-    public float jumpFall;
-    public float nextJumpTime;
-    public float gravityScale;
-    public float xHorizontal;
-    public float zVertical;
+   
+    //public float moveSpeed = 0.01f;
+    public bool isGameRunning = false;
 
-    void Awake()
+    public int minLane = 0;
+    public int maxLane = 4;
+    public int startLane = 2;
+    public float distanceLane =2f;
+    public float moveSpeed = 3f;
+
+    public Transform startMarker;
+    public Transform endMarker;
+    public float lineSwitchSpeed = 1.0f;
+    public float startTime;
+    public float journeyLength;
+    public Vector3 targetPosition;
+
+    void Start()
     {
-        _rigidbody = GetComponent<Rigidbody>();
-        gravityScale = 20f;
-
+        //Hareketin başlangıç zamanı ve yolculuk uzunluk hesabı //Lerp
+        startTime = Time.time;
+        journeyLength = Vector3.Distance(startMarker.position, endMarker.position);
+        //Başlangıç pozisyonu
+        targetPosition = transform.position;
     }
 
     void FixedUpdate()
     {
 
-        //Movement
-        Vector3 moveSystem = new Vector3(xHorizontal, 0, zVertical);
-        _rigidbody.MovePosition(transform.position + moveSystem * moveSpeed * Time.fixedDeltaTime);
-
-
-        _rigidbody.AddForce(Vector3.forward * moveSpeed * Time.fixedDeltaTime, ForceMode.Force);
-
-        // Jump
-        _rigidbody.AddForce(Physics.gravity * gravityScale * Time.fixedDeltaTime, ForceMode.Acceleration);//zıplamayı gerçek dünyaya yakın yapmaya çalıştım.
-
     }
     void Update()
     {
+        //Sağ klik ile başlangıç
+        if (!isGameRunning && Input.GetMouseButtonDown(0))
+        {
+            isGameRunning = true;
+        }
+        if (isGameRunning) 
+        {
+            transform.position += Vector3.forward * moveSpeed * Time.deltaTime;
+
+            //Sağ ve sol şeride gitme --->
+            if (Input.GetKeyDown(KeyCode.A) && startLane > minLane)
+            {
+                startLane--;
+            }
+            if (Input.GetKeyDown(KeyCode.D) && startLane < maxLane)
+            {
+                startLane++;
+            }
+            targetPosition = new Vector3(startLane * distanceLane - (distanceLane * 2), transform.position.y, transform.position.z);            
+        }
+
+
+
+
+
+
+        // Şerit değiştirme konumu hedef ---> Lerp yerine anında değişim
+
+        transform.position = Vector3.MoveTowards(transform.position, targetPosition, lineSwitchSpeed * Time.deltaTime);
+
+
+    }    
+}
+/*yatayda hareket(line switch)
+random object spawn (sadece spawn olsunlar random şekilde) :
+objelerin aralıklarını yatayda ve dikeyde biz kontrol edebilelim.
+random tipte objeler spawn olsun.
+çarptığında fail edecek objeler (başlangıç noktasına dönülecek.)
+çarptığında toplanabilir olacak ve bunların count'u tutulacak.*/
+
+
+/* sağ-sol yapmanın konuma etkisi
+Vector3 newPosition = transform.position;
+newPosition.x = startLane * distanceLane - (distanceLane * 2);
+transform.position = newPosition;*/
+
+
+
+/*
+        // x = v * t
+        float distanceMoved = (Time.time - startTime) * lineSwitchSpeed;
+        // tammalanan yolculuk kesiri = mevcut/ toplam
+        float fractionOfJourney = distanceMoved / journeyLength;
+        //Lerp ---> pozisyonu ona göre ayarla
+        transform.position = Vector3.Lerp(startMarker.position , endMarker .position, fractionOfJourney);
+        */
+
+//public float xHorizontal;
+//public float zVertical;
+//private Rigidbody _rigidbody;
+//public float jumpSpeed = 5f;
+//public float jumpFall;
+//public float nextJumpTime;
+//public float gravityScale = 3f;
+
+/*
+    
+        //_rigidbody.AddForce(Vector3.forward * moveSpeed * Time.fixedDeltaTime, ForceMode.Force);
+
+        // Jump
+        //_rigidbody.AddForce(Physics.gravity * gravityScale * Time.fixedDeltaTime, ForceMode.Acceleration);//zıplamayı gerçek dünyaya yakın yapmaya çalıştım.
+
+ */
+/*
+ 
         //Movement için input alımı
         xHorizontal = Input.GetAxis("Horizontal");
         zVertical = Input.GetAxis("Vertical");
 
-        
+        //Movement
+        Vector3 moveSystem = new Vector3(xHorizontal, 0, zVertical);
+        _rigidbody.MovePosition(transform.position + moveSystem * moveSpeed * Time.deltaTime);
+
+
         bool IsOnGround = Physics.Raycast(transform.position, Vector3.down, 1.5f); // Raycast atıp zemin ile mesafe ölçme
 
         if (Input.GetButtonDown("Jump") && IsOnGround)
@@ -52,9 +131,7 @@ public class PlayerMovement : MonoBehaviour
             
             nextJumpTime = jumpFall;
         }
-    }    
-}
-
+*/
 
 //_rigidbody.AddForce(Vector3.up * 1000, ForceMode.Force);
 /*
