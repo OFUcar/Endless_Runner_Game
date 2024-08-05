@@ -28,8 +28,11 @@ public class PlayerMovement : MonoBehaviour
     
     public Vector3 targetPosition;
 
+    private GameStateController gameStateController;
+
     private void Start()
     {
+        gameStateController = FindObjectOfType<GameStateController>();
         StartMovementDirection();
     }
 
@@ -77,51 +80,6 @@ public class PlayerMovement : MonoBehaviour
 
         transform.position = Vector3.MoveTowards(transform.position, targetPosition, lineSwitchSpeed * Time.deltaTime);
     }
-
-    private void OnTriggerEnter(Collider collider)
-    {
-        if (collider.gameObject.CompareTag("Obstacle"))
-        {
-            StartCoroutine(CheckDead());
-        }
-    }
-    /*private IEnumerator CheckDead()
-    {
-        isPause = true;
-        yield return new WaitForSeconds(collisionPauseDuration);
-        isPause = false;
-    }*/
-
-    private IEnumerator CheckDead()
-    {
-        if (!isPause)
-        {
-            isPause = true;
-            DeadGame();
-            yield return new WaitForSeconds(collisionPauseDuration);
-            ResetGame();
-
-            isPause = false;
-        }
-    }
-
-    private void DeadGame()
-    {
-        moveSpeed = 0f;
-        lineSwitchSpeed = 0f;
-
-        foreach( var objectsToSpawn_1 in objectsToSpawn)
-        {
-            objectsToSpawn_1.SetActive(false);
-        }
-
-    }
-
-    private void ResetGame()
-    {
-        transform.position = new Vector3(0, 1,0);
-        transform.rotation = Quaternion.identity;
-    }
 }
 
-// karakter hızı =0 , şerit değştirme  = 0, , obje oluşması duracak
+// şimdi engeller siliniyor, başa dönüyor ama oyun geri çalışmıyor. Game State Control mekanizması kurmak lazım. 
