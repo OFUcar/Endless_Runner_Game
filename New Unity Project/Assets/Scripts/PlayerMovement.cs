@@ -21,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
     public float journeyLength;
     public float collisionPauseDuration = 2f;
 
-    private bool isPause = false;
+    //private bool isPause = false;
 
     public Transform startMarker;
     public Transform endMarker;

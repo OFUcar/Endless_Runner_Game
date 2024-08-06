@@ -16,6 +16,7 @@ public class RandomObjectSpawner : MonoBehaviour
     private float _nextSpawnTime;
     private float[] _lanePositions;
 
+
     private Dictionary<GameObject, ObjectPooling> _objectPools;
 
     private List<GameObject> _spawnedObjects;
@@ -67,7 +68,7 @@ public class RandomObjectSpawner : MonoBehaviour
     private void SpawnObject(bool initialSpawn = false)
     {
         GameObject prefab = objectsToSpawn[Random.Range(0, objectsToSpawn.Length)];
-        GameObject objectsToSpawn = _objectPools[prefab].GetPooledObject();
+        GameObject objectToSpawn = _objectPools[prefab].GetPooledObject();
 
         Vector3 playerPosition = playerMovement.transform.position;
         Vector3 spawnPosition = new Vector3(
@@ -76,10 +77,10 @@ public class RandomObjectSpawner : MonoBehaviour
             playerPosition.z + (initialSpawn ? 200 : 7)
             );
 
-        objectsToSpawn.transform.position = spawnPosition;
-        objectsToSpawn.transform.rotation = Quaternion.identity;
-        objectsToSpawn.SetActive(true);
-        _spawnedObjects.Add(objectsToSpawn);
+        objectToSpawn.transform.position = spawnPosition;
+        objectToSpawn.transform.rotation = Quaternion.identity;
+        objectToSpawn.SetActive(true);
+        _spawnedObjects.Add(objectToSpawn);
     }
 
     private void RepositionObject()
