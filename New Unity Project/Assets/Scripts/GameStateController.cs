@@ -96,6 +96,14 @@ public class GameStateController : MonoBehaviour
     {
         SetGameState(GameState.GameOver);
     }
+    // Buradan sonraki olan fonksiyonlarý taþýman gerekiyor. Mesela ClearGame Gibi 
+
+
+
+
+
+
+
 
     public void DeadGame()
     {
@@ -107,6 +115,9 @@ public class GameStateController : MonoBehaviour
 
     public void ResetGame()
     {
+        // Burasý için C# event leri kullanman gerek. SS ler aldým zaten  ClearGame olmayacak onun yerine Object Pooling yöntemini kullan
+
+
         playerMovement.transform.position = new Vector3(0,1,0);
         playerMovement.transform.rotation = Quaternion.identity;
         ClearGame();
@@ -115,7 +126,7 @@ public class GameStateController : MonoBehaviour
 
     public void ClearGame()
     {
-        GameObject[] obstacles = GameObject.FindGameObjectsWithTag("Obstacles");
+        GameObject[] obstacles = GameObject.FindGameObjectsWithTag("Obstacle");
             foreach(GameObject obstacle in obstacles)
         {
             Destroy(obstacle);

@@ -20,4 +20,5 @@ public class CameraFollow : MonoBehaviour
         Vector3 direction = (targetPosition - transform.position).normalized;
         transform.position += (direction * cameraFollowSpeed * Time.deltaTime);
     }
+
 }
