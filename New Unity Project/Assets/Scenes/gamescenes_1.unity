@@ -139,7 +139,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &224025013
 Transform:
   m_ObjectHideFlags: 0
@@ -624,7 +624,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1936359380
 Transform:
   m_ObjectHideFlags: 0
@@ -819,6 +819,51 @@ MonoBehaviour:
   playerMovement: {fileID: 1961590638}
   randomObjectSpawner: {fileID: 224025014}
   currentState: 0
+--- !u!1 &2002949632
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2002949634}
+  - component: {fileID: 2002949633}
+  m_Layer: 0
+  m_Name: LevelObjectManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2002949633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2002949632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12b439ed77f28694f8e231f6b273d215, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _obstaclePrefab: {fileID: 6850948111745953620, guid: 2b0d07dbf3e34344ab97fba0c03e50aa, type: 3}
+--- !u!4 &2002949634
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2002949632}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.639951, y: 1.8842735, z: -3.5990267}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2067689530
 GameObject:
   m_ObjectHideFlags: 0
@@ -941,7 +986,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2070489473
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1043,6 +1088,7 @@ SceneRoots:
   - {fileID: 1961590636}
   - {fileID: 2067689534}
   - {fileID: 986313399}
-  - {fileID: 224025013}
   - {fileID: 1936359380}
   - {fileID: 2070489474}
+  - {fileID: 224025013}
+  - {fileID: 2002949634}

@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "D:\\GitHub\\Endless_Runner_Game\\New Unity Project\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B2B58FB2-4462-6B0C-A872-40DD957E5FE0}|Assembly-CSharp.csproj|d:\\github\\endless_runner_game\\new unity project\\assets\\scripts\\randomobjectspawner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B2B58FB2-4462-6B0C-A872-40DD957E5FE0}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\randomobjectspawner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B2B58FB2-4462-6B0C-A872-40DD957E5FE0}|Assembly-CSharp.csproj|d:\\github\\endless_runner_game\\new unity project\\assets\\scripts\\levelobjectmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B2B58FB2-4462-6B0C-A872-40DD957E5FE0}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\levelobjectmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B2B58FB2-4462-6B0C-A872-40DD957E5FE0}|Assembly-CSharp.csproj|D:\\GitHub\\Endless_Runner_Game\\New Unity Project\\assets\\scripts\\objectpooling.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B2B58FB2-4462-6B0C-A872-40DD957E5FE0}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\objectpooling.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B2B58FB2-4462-6B0C-A872-40DD957E5FE0}|Assembly-CSharp.csproj|d:\\github\\endless_runner_game\\new unity project\\assets\\scripts\\randomobjectspawner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B2B58FB2-4462-6B0C-A872-40DD957E5FE0}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\randomobjectspawner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B2B58FB2-4462-6B0C-A872-40DD957E5FE0}|Assembly-CSharp.csproj|D:\\GitHub\\Endless_Runner_Game\\New Unity Project\\assets\\scripts\\playermovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -17,6 +17,10 @@
     {
       "AbsoluteMoniker": "D:0:0:{B2B58FB2-4462-6B0C-A872-40DD957E5FE0}|Assembly-CSharp.csproj|D:\\GitHub\\Endless_Runner_Game\\New Unity Project\\assets\\scripts\\gamestatecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B2B58FB2-4462-6B0C-A872-40DD957E5FE0}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\gamestatecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B2B58FB2-4462-6B0C-A872-40DD957E5FE0}|Assembly-CSharp.csproj|D:\\GitHub\\Endless_Runner_Game\\New Unity Project\\assets\\scripts\\objectpooling.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B2B58FB2-4462-6B0C-A872-40DD957E5FE0}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\objectpooling.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B2B58FB2-4462-6B0C-A872-40DD957E5FE0}|Assembly-CSharp.csproj|D:\\GitHub\\Endless_Runner_Game\\New Unity Project\\assets\\scripts\\camerafollow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -30,11 +34,50 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "LevelObjectManager.cs",
+              "DocumentMoniker": "D:\\GitHub\\Endless_Runner_Game\\New Unity Project\\Assets\\Scripts\\LevelObjectManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\LevelObjectManager.cs",
+              "ToolTip": "D:\\GitHub\\Endless_Runner_Game\\New Unity Project\\Assets\\Scripts\\LevelObjectManager.cs",
+              "RelativeToolTip": "Assets\\Scripts\\LevelObjectManager.cs",
+              "ViewState": "AQIAACgAAAAAAAAAAAAAAEMAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-07T13:03:41.686Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "RandomObjectSpawner.cs",
+              "DocumentMoniker": "D:\\GitHub\\Endless_Runner_Game\\New Unity Project\\Assets\\Scripts\\RandomObjectSpawner.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\RandomObjectSpawner.cs",
+              "ToolTip": "D:\\GitHub\\Endless_Runner_Game\\New Unity Project\\Assets\\Scripts\\RandomObjectSpawner.cs",
+              "RelativeToolTip": "Assets\\Scripts\\RandomObjectSpawner.cs",
+              "ViewState": "AQIAAA4AAAAAAAAAAAAAwIUAAAAaAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-06T08:16:52.597Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 4,
+              "Title": "ObjectPooling.cs",
+              "DocumentMoniker": "D:\\GitHub\\Endless_Runner_Game\\New Unity Project\\Assets\\Scripts\\ObjectPooling.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\ObjectPooling.cs",
+              "ToolTip": "D:\\GitHub\\Endless_Runner_Game\\New Unity Project\\Assets\\Scripts\\ObjectPooling.cs",
+              "RelativeToolTip": "Assets\\Scripts\\ObjectPooling.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAeAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-06T08:17:10.387Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "CameraFollow.cs",
               "DocumentMoniker": "D:\\GitHub\\Endless_Runner_Game\\New Unity Project\\Assets\\Scripts\\CameraFollow.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\CameraFollow.cs",
@@ -52,34 +95,9 @@
               "RelativeDocumentMoniker": "Assets\\Scripts\\GameStateController.cs",
               "ToolTip": "D:\\GitHub\\Endless_Runner_Game\\New Unity Project\\Assets\\Scripts\\GameStateController.cs",
               "RelativeToolTip": "Assets\\Scripts\\GameStateController.cs",
-              "ViewState": "AQIAADsAAAAAAAAAAAAAwAAAAAAAAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-06T08:17:11.791Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ObjectPooling.cs",
-              "DocumentMoniker": "D:\\GitHub\\Endless_Runner_Game\\New Unity Project\\Assets\\Scripts\\ObjectPooling.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\ObjectPooling.cs",
-              "ToolTip": "D:\\GitHub\\Endless_Runner_Game\\New Unity Project\\Assets\\Scripts\\ObjectPooling.cs",
-              "RelativeToolTip": "Assets\\Scripts\\ObjectPooling.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAACkAAAAmAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-06T08:17:10.387Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "RandomObjectSpawner.cs",
-              "DocumentMoniker": "D:\\GitHub\\Endless_Runner_Game\\New Unity Project\\Assets\\Scripts\\RandomObjectSpawner.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\RandomObjectSpawner.cs",
-              "ToolTip": "D:\\GitHub\\Endless_Runner_Game\\New Unity Project\\Assets\\Scripts\\RandomObjectSpawner.cs",
-              "RelativeToolTip": "Assets\\Scripts\\RandomObjectSpawner.cs",
-              "ViewState": "AQIAACIAAAAAAAAAAAAuwCoAAAAkAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-06T08:16:52.597Z",
+              "WhenOpened": "2024-08-06T08:17:11.791Z",
               "EditorCaption": ""
             },
             {
@@ -90,9 +108,10 @@
               "RelativeDocumentMoniker": "Assets\\Scripts\\PlayerMovement.cs",
               "ToolTip": "D:\\GitHub\\Endless_Runner_Game\\New Unity Project\\Assets\\Scripts\\PlayerMovement.cs",
               "RelativeToolTip": "Assets\\Scripts\\PlayerMovement.cs",
-              "ViewState": "AQIAADAAAAAAAAAAAAAqwBcAAAAGAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAqwAwAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-06T08:17:08.449Z"
+              "WhenOpened": "2024-08-06T08:17:08.449Z",
+              "EditorCaption": ""
             }
           ]
         }

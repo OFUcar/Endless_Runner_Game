@@ -71,7 +71,7 @@ public class RandomObjectSpawner : MonoBehaviour
     {
         GameObject prefab = objectsToSpawn[Random.Range(0, objectsToSpawn.Length)];
 
-        Debug.Log("dictinory null = "+ _objectPools == null);
+        Debug.Log("dictinory null = "+ (_objectPools == null). ToString());
         Debug.Log("dictionary de key e sahip value var mý = " +_objectPools.ContainsKey(prefab).ToString());
         GameObject objectToSpawn = _objectPools[prefab].GetPooledObject();
 
