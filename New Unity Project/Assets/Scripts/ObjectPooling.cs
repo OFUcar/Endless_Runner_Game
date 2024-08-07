@@ -39,7 +39,7 @@ public class ObjectPooling : MonoBehaviour
 
     public void ReturnObjectToPool( GameObject poolGameObject)
     {
-        poolGameObject.SetActive(true);
+        poolGameObject.SetActive(false);
     }
 
 }

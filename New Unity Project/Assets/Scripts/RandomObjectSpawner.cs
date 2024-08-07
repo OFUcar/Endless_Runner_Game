@@ -44,6 +44,8 @@ public class RandomObjectSpawner : MonoBehaviour
     {
         _objectPools = new Dictionary<GameObject, ObjectPooling>();
 
+        Debug.Log("Object Pools atama yapýldý");
+
         foreach (var prefab in objectsToSpawn)
         {
             GameObject poolObject = new GameObject(prefab.name + "Pool");
@@ -68,6 +70,9 @@ public class RandomObjectSpawner : MonoBehaviour
     private void SpawnObject(bool initialSpawn = false)
     {
         GameObject prefab = objectsToSpawn[Random.Range(0, objectsToSpawn.Length)];
+
+        Debug.Log("dictinory null = "+ _objectPools == null);
+        Debug.Log("dictionary de key e sahip value var mý = " +_objectPools.ContainsKey(prefab).ToString());
         GameObject objectToSpawn = _objectPools[prefab].GetPooledObject();
 
         Vector3 playerPosition = playerMovement.transform.position;
