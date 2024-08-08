@@ -7,101 +7,67 @@ public class LevelObjectManager : MonoBehaviour
     [SerializeField]
     private GameObject _obstaclePrefab;
 
-    private int _poolSize = 300;
-    private int _minLane = 0;
-    private int _maxLane = 4;
-
-    private float _startingZPosition = 10f;
-    private float _zDifference = 2f;
-    private float _maxSpawnedDistanceAccordingToPlayer = 200f;
-    private float[] _lanePosition;
-    private float _laneWith = 2f;
+    private int _nearestObstacleIndex = 0;
 
     private List<GameObject> _spawnedObstacles;
 
     private void Start()
     {
-        SpawnedObstacles();
+        SpawnObstacles();
     }
 
     private void Update()
     {
-        CarryingObstacles();
+        CarryObstacles();
     }
 
-    //Burada objeyi pooldan çekip oluþturdum
-    private void SpawnedObstacles()
+    private void SpawnObstacles()
     {
         _spawnedObstacles = new List<GameObject>();
 
-        float currentSpawnZPosition = _startingZPosition;
+        float currentSpawnZPosition = GameSettings.ObstacleStartingZPosition;
 
-        while (currentSpawnZPosition < _maxSpawnedDistanceAccordingToPlayer)
+        while (currentSpawnZPosition < GameSettings.ObstacleMaxSpawnedDistanceAccordingToPlayer)
         {
-            GameObject spawnedObject = Instantiate(_obstaclePrefab, new Vector3(0, 0.5f, currentSpawnZPosition), Quaternion.identity);
+            GameObject spawnedObject = Instantiate(_obstaclePrefab, new Vector3(GetRandomXPosition(), 0.5f, currentSpawnZPosition), Quaternion.identity);
             _spawnedObstacles.Add(spawnedObject);
+            currentSpawnZPosition += GameSettings.ObstacleZDifference;
 
-            //RandomObstaclesPosition();
-
-            currentSpawnZPosition += _zDifference;
         }
     }
 
-    //burada objeyi ileriye taþýdým. ama sadece ilk objeyi
-    private void CarryingObstacles()
+    private float GetRandomXPosition()
+    {
+        int randomLane = Random.Range(GameSettings.MinLane, GameSettings.MaxLane + 1);
+        return GameSettings.StartingLaneXPosition * randomLane * GameSettings.XDistanceBetweenLanes;
+    }
+
+
+    private void CarryObstacles()
     {
         float playerZPosition = CurrentPlayerZPosition();
-        GameObject firstObstacle = _spawnedObstacles[0];
+        GameObject nearestObstacle = _spawnedObstacles[_nearestObstacleIndex];
 
-        if (firstObstacle.transform.position.z < playerZPosition - 3f)
+        if (nearestObstacle.transform.position.z < playerZPosition - 3f)
         {
-            int randomX = Random.Range(_minLane, _maxLane + 1);
-            Debug.Log($"Random X Position: {randomX}");
 
-            float newZPosition = _startingZPosition + _maxSpawnedDistanceAccordingToPlayer;
-            Vector3 newPosition = new Vector3(randomX, 0.5f, newZPosition);
+            float newZPosition = _spawnedObstacles[_nearestObstacleIndex].transform.position.z + GameSettings.ObstacleMaxSpawnedDistanceAccordingToPlayer;
+            Vector3 newPosition = new Vector3(GetRandomXPosition(), 0.5f, newZPosition);
 
-            firstObstacle.transform.position = newPosition;
+            nearestObstacle.transform.position = newPosition;
+
+            _nearestObstacleIndex++;
+
+            if (_nearestObstacleIndex >= _spawnedObstacles.Count)
+            {
+                _nearestObstacleIndex = 0;
+            }
         }
     }
 
-    // Burada player ý tagledim
     private float CurrentPlayerZPosition()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         return player.transform.position.z;
-    }
-
-    //Burada objeleri random olarak pozisyonlara getir
-    private void RandomObstaclesPosition()
-    {
-        foreach (var obstacle in _spawnedObstacles)
-        {
-            int randomLane = Random.Range(0, 4);
-            float randomX = randomLane * 2f;
-
-            float randomZOffset = Random.Range(_maxSpawnedDistanceAccordingToPlayer / 2, _maxSpawnedDistanceAccordingToPlayer / 2);
-            float newZPosition = CurrentPlayerZPosition() + randomZOffset;
-            _ = CurrentPlayerZPosition() + randomZOffset;
-
-            Vector3 newPosition = new Vector3(randomX, 0.5f, newZPosition);
-
-            InitializedLanes();
-
-            obstacle.transform.position = newPosition;
-        }
-    }
-
-    // burada objeleri lane ler üzerinde ortaladým
-    private void InitializedLanes()
-    {
-        int numberOfLanes = 5;
-        _lanePosition = new float[numberOfLanes];
-        float laneXPosition = -(numberOfLanes - 1) / 2f * _laneWith;
-
-        for (int i = 0; i < numberOfLanes; i++)
-        {
-            _lanePosition[i] = laneXPosition + i * _laneWith;
-        }
     }
 }

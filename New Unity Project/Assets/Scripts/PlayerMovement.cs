@@ -10,11 +10,8 @@ public class PlayerMovement : MonoBehaviour
 
     public bool isGameRunning = false;
 
-    public int minLane = 0;
-    public int maxLane = 4;
-    public int startLane = 2;
+    private int _currentLane = 2;
 
-    public float distanceLane =2f;
     public float moveSpeed = 3f;
     public float lineSwitchSpeed = 1.0f;
     public float startTime;
@@ -66,17 +63,17 @@ public class PlayerMovement : MonoBehaviour
 
     private void ManuelLaneChange()
     {
-        if (Input.GetKeyDown(KeyCode.A) && startLane > minLane)
+        if (Input.GetKeyDown(KeyCode.A) && _currentLane > GameSettings.MaxLane)
         {
-            startLane--;
+            _currentLane--;
         }
 
-        if (Input.GetKeyDown(KeyCode.D) && startLane < maxLane)
+        if (Input.GetKeyDown(KeyCode.D) && _currentLane < GameSettings.MaxLane)
         {
-            startLane++;
+            _currentLane++;
         }
 
-        targetPosition = new Vector3(startLane * distanceLane - (distanceLane * 2), transform.position.y, transform.position.z);
+        targetPosition = new Vector3(GameSettings.StartingLaneXPosition * _currentLane * GameSettings.XDistanceBetweenLanes, transform.position.y, transform.position.z);
 
         transform.position = Vector3.MoveTowards(transform.position, targetPosition, lineSwitchSpeed * Time.deltaTime);
     }
