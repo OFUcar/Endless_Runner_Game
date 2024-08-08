@@ -48,7 +48,6 @@ public class LevelObjectManager : MonoBehaviour
             Vector3 newPosition = new Vector3(randomX, 0.5f, newZPosition);
 
             obstacle.transform.position = newPosition;
-
         }
     }
 
@@ -59,12 +58,18 @@ public class LevelObjectManager : MonoBehaviour
         float playerZPosition =  CurrentPlayerZPosition();
         GameObject firstObstacle = _spawnedObstacles[0];
 
-        if(firstObstacle.transform.position.z < CurrentPlayerZPosition() - 3f)
+        foreach (var obstacle in _spawnedObstacles)
         {
-            // burada engel geçildikten sonra 200 birim sonraki bir yere randoým olarak ojbeyi gönderecek
-            
-        }
+            if (obstacle.transform.position.z < playerZPosition - 3f)
+            {
+                float randomX = Random.Range(_minLane, _maxLane); // x-de random
+                // z de random ama playerdan 200 birim ötede(_max...)
+                float newZPosition = playerZPosition + _maxSpawnedDistanceAccordingToPlayer;
+                Vector3 newPosition = new Vector3(randomX, 0.5f, newZPosition);
 
+                firstObstacle.transform.position = newPosition;
+            }
+        }
     }
 
     private float CurrentPlayerZPosition()
@@ -72,12 +77,6 @@ public class LevelObjectManager : MonoBehaviour
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         return player.transform.position.z;
     }
-
-
-
-
-
-
     /* ortalamaya gerek yok 
     private void AverageLanes()
     {
