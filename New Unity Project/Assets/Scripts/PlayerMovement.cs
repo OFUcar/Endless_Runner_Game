@@ -6,8 +6,6 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public GameObject[] objectsToSpawn;
-
     public bool isGameRunning = false;
 
     private int _currentLane = 2;
@@ -17,8 +15,6 @@ public class PlayerMovement : MonoBehaviour
     public float startTime;
     public float journeyLength;
     public float collisionPauseDuration = 2f;
-
-    //private bool isPause = false;
 
     public Transform startMarker;
     public Transform endMarker;

@@ -790,7 +790,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bbd71681e6418040b9810152f532f4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectsToSpawn: []
   isGameRunning: 0
   moveSpeed: 3
   lineSwitchSpeed: 30

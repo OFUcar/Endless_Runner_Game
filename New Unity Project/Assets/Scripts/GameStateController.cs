@@ -79,7 +79,6 @@ public class GameStateController : MonoBehaviour
         playerMovement.isGameRunning = false;
         playerMovement.moveSpeed = 0f;
         randomObjectSpawner.enabled = false;
-        ResetGame();
     }
 
     public void PauseGame()
@@ -96,7 +95,12 @@ public class GameStateController : MonoBehaviour
     {
         SetGameState(GameState.GameOver);
     }
-    // Buradan sonraki olan fonksiyonlarý taþýman gerekiyor. Mesela ClearGame Gibi 
+}
+
+// eðer karakter obje ile temas ederse karakterin hareketi duracak.
+// temas kontrolü nerede saðlanacak?
+//temas kontrlü saðlandýktan sonra iþlemler nerede dönecek??
+// hareket durduktan hemen sonrasýnda oyun baþa dönecek yani otomatik olarak replay e düþmesi gerekiyor
 
 
 
@@ -105,56 +109,100 @@ public class GameStateController : MonoBehaviour
 
 
 
-    public void DeadGame()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+public void DeadGame()
+{
+    foreach (var objectsToSpawn_1 in playerMovement.objectsToSpawn)
     {
-        foreach (var objectsToSpawn_1 in playerMovement.objectsToSpawn)
-        {
-            objectsToSpawn_1.SetActive(false);
-        }
-    }
-
-    public void ResetGame()
-    {
-        // Burasý için C# event leri kullanman gerek. SS ler aldým zaten  ClearGame olmayacak onun yerine Object Pooling yöntemini kullan
-
-
-        playerMovement.transform.position = new Vector3(0,1,0);
-        playerMovement.transform.rotation = Quaternion.identity;
-        ClearGame();
-        SetGameState(GameState.Idle);
-    }
-
-    public void ClearGame()
-    {
-        GameObject[] obstacles = GameObject.FindGameObjectsWithTag("Obstacle");
-            foreach(GameObject obstacle in obstacles)
-        {
-            Destroy(obstacle);
-        }
-    }
-
-    private void OnTriggerEnter(Collider collider)
-    {
-        if (collider.gameObject.CompareTag("Obstacle"))
-        {
-            StartCoroutine(CheckDead());
-        }
-    }
-
-    private IEnumerator CheckDead()
-    {
-        bool isPause = false;
-
-        if (!isPause)
-        {
-            isPause = true;
-            DeadGame();
-            yield return new WaitForSeconds(playerMovement.collisionPauseDuration);
-            ResetGame();
-            isPause = false;
-        }
+        objectsToSpawn_1.SetActive(false);
     }
 }
 
+public void ResetGame()
+{
+
+
+    playerMovement.transform.position = new Vector3(0,1,0);
+    playerMovement.transform.rotation = Quaternion.identity;
+    SetGameState(GameState.Idle);
+}
+
+private void OnTriggerEnter(Collider collider)
+{
+    if (collider.gameObject.CompareTag("Obstacle"))
+    {
+        StartCoroutine(CheckDead());
+    }
+}
+
+private IEnumerator CheckDead()
+{
+    bool isPause = false;
+
+    if (!isPause)
+    {
+        isPause = true;
+        DeadGame();
+        yield return new WaitForSeconds(playerMovement.collisionPauseDuration);
+        ResetGame();
+        isPause = false;
+    }
+}*/
+
+
+
+
+// Burasý için C# event leri kullanman gerek. SS ler aldým zaten  ClearGame olmayacak onun yerine Object Pooling yöntemini kullan
+
 // Þu anda ObstacleS Tag ini yinr baðlayamadým. Ama game State Controllerýn Çalýþmasý gerekiyor yine de
 
+
+/*  Bunu kullanmama gerek yok. çünkü object pooling yöntemi kullanýyorum
+public void ClearGame()
+{
+    GameObject[] obstacles = GameObject.FindGameObjectsWithTag("Obstacle");
+        foreach(GameObject obstacle in obstacles)
+    {
+        Destroy(obstacle);
+    }
+}*/
