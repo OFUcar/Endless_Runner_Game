@@ -6,7 +6,7 @@ public static class GameSettings
 
 
     public static readonly float XDistanceBetweenLanes = 2f;
-    public static readonly float StartingLaneXPosition = -4f;
+    public static readonly float StartingLaneXPosition =-4f;
 
     public static readonly float ObstacleStartingZPosition = 10f;
     public static readonly float ObstacleZDifference = 2f;

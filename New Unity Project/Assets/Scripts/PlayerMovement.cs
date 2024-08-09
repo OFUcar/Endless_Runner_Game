@@ -63,7 +63,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void ManuelLaneChange()
     {
-        if (Input.GetKeyDown(KeyCode.A) && _currentLane > GameSettings.MaxLane)
+        if (Input.GetKeyDown(KeyCode.A) && _currentLane > GameSettings.MinLane)
         {
             _currentLane--;
         }
@@ -73,7 +73,7 @@ public class PlayerMovement : MonoBehaviour
             _currentLane++;
         }
 
-        targetPosition = new Vector3(GameSettings.StartingLaneXPosition * _currentLane * GameSettings.XDistanceBetweenLanes, transform.position.y, transform.position.z);
+        targetPosition = new Vector3(GameSettings.StartingLaneXPosition + _currentLane * GameSettings.XDistanceBetweenLanes, transform.position.y, transform.position.z);
 
         transform.position = Vector3.MoveTowards(transform.position, targetPosition, lineSwitchSpeed * Time.deltaTime);
     }

@@ -792,7 +792,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectsToSpawn: []
   isGameRunning: 0
-  currentLane: 2
   moveSpeed: 3
   lineSwitchSpeed: 30
   startTime: 0
@@ -1085,7 +1084,7 @@ SceneRoots:
   - {fileID: 1961590636}
   - {fileID: 2067689534}
   - {fileID: 986313399}
+  - {fileID: 2002949634}
   - {fileID: 1936359380}
   - {fileID: 2070489474}
   - {fileID: 224025013}
-  - {fileID: 2002949634}

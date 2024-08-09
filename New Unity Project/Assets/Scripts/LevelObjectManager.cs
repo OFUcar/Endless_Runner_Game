@@ -38,10 +38,10 @@ public class LevelObjectManager : MonoBehaviour
 
     private float GetRandomXPosition()
     {
-        int randomLane = Random.Range(GameSettings.MinLane, GameSettings.MaxLane + 1);
-        return GameSettings.StartingLaneXPosition * randomLane * GameSettings.XDistanceBetweenLanes;
+        int randomLane = Random.Range(GameSettings.MinLane, GameSettings.MaxLane +1 );
+        //Debug.Log()
+        return GameSettings.StartingLaneXPosition + randomLane * GameSettings.XDistanceBetweenLanes;
     }
-
 
     private void CarryObstacles()
     {
