@@ -338,7 +338,6 @@
 "Assets/Scripts/GameStateController.cs"
 "Assets/Scripts/LevelObjectManager.cs"
 "Assets/Scripts/ObjectPooling.cs"
-"Assets/Scripts/PlayerCollisionChecker.cs"
 "Assets/Scripts/PlayerMovement.cs"
 "Assets/Scripts/RandomObjectSpawner.cs"
 -langversion:9.0

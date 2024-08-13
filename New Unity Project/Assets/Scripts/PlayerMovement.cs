@@ -73,12 +73,4 @@ public class PlayerMovement : MonoBehaviour
 
         transform.position = Vector3.MoveTowards(transform.position, targetPosition, lineSwitchSpeed * Time.deltaTime);
     }
-
-    private void ResetPlayerGame()
-    {
-        // Burada Gameover olduyğu zmands olasn resetleme işi gerçekleştirilecek
-
-    }
 }
-
-// şimdi engeller siliniyor, başa dönüyor ama oyun geri çalışmıyor. Game State Control mekanizması kurmak lazım. 

@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameStateController : MonoBehaviour
 {
     public PlayerMovement playerMovement;
-    public RandomObjectSpawner randomObjectSpawner;
+    public ObjectPooling objectPooling;
 
     public enum GameState
     {
@@ -19,6 +20,7 @@ public class GameStateController : MonoBehaviour
 
     void Start()
     {
+        ReferenceCheck();
         SetGameState(GameState.Idle);
     }
 
@@ -57,28 +59,29 @@ public class GameStateController : MonoBehaviour
     {
         playerMovement.isGameRunning = false;
         playerMovement.moveSpeed = 0f;
-        randomObjectSpawner.enabled = false;
+        objectPooling.enabled = false;
     }
 
     private void OnGameRunning()
     {
         playerMovement.isGameRunning = true;
         playerMovement.moveSpeed = 3f;
-        randomObjectSpawner.enabled = true;
+        objectPooling.enabled = true;
     }
 
     private void OnGamePause()
     {
         playerMovement.isGameRunning = false;
         playerMovement.moveSpeed = 0f;
-        randomObjectSpawner.enabled = false;
+        objectPooling.enabled = false;
     }
 
     private void OnGameOver()
     {
         playerMovement.isGameRunning = false;
         playerMovement.moveSpeed = 0f;
-        randomObjectSpawner.enabled = false;
+        objectPooling.enabled = false;
+        OnGameRestart();
     }
 
     public void PauseGame()
@@ -95,7 +98,51 @@ public class GameStateController : MonoBehaviour
     {
         SetGameState(GameState.GameOver);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("Obstacle"))
+        {
+            OnGameOver();
+        }
+    }
+
+    private void OnGameRestart()
+    {
+        SetGameState(GameState.Idle);
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+        if(objectPooling != null)
+        {
+            objectPooling.ReturnObjectToPool();
+        }
+        else
+        {
+            Debug.Log("Object Pooling Referansýnda büyük sýkýntý var");
+        }
+    }
+
+
+    private void ReferenceCheck()
+    {
+        if (objectPooling == null)
+        {
+            objectPooling = FindObjectOfType<ObjectPooling>();
+            if (objectPooling == null)
+            {
+                Debug.LogError("object pooling referansý alýnmýyor");
+            }
+
+        }
+        if (playerMovement == null)
+        {
+            Debug.LogError(" PlayerMovement da çalýþmýyor");
+        }
+    }
 }
+
+// Þu anda object pooling referansý alýnmýyor 
 
 // eðer karakter obje ile temas ederse karakterin hareketi duracak.
 // temas kontrolü nerede saðlanacak?

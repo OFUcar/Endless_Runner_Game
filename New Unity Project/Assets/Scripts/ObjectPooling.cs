@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -42,17 +43,8 @@ public class ObjectPooling : MonoBehaviour
         poolGameObject.SetActive(false);
     }
 
-    public List<GameObject> GetAllActiveObject()
+    /*internal static void ReturnObjectToPool()
     {
-        List<GameObject> activeObjects = new List<GameObject>();
-
-        foreach (GameObject newpoolGameObject in pool)
-        {
-            if (newpoolGameObject.activeInHierarchy)
-            {
-                activeObjects.Add(newpoolGameObject);
-            }
-        }
-        return activeObjects;
-    }
+        throw new NotImplementedException();
+    }*/
 }

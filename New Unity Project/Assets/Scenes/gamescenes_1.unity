@@ -625,7 +625,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1885111462
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -858,7 +858,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerMovement: {fileID: 1961590638}
-  randomObjectSpawner: {fileID: 224025014}
+  objectPooling: {fileID: 2070489473}
   currentState: 0
 --- !u!1 &2002949632
 GameObject:
@@ -1130,7 +1130,7 @@ SceneRoots:
   - {fileID: 2067689534}
   - {fileID: 986313399}
   - {fileID: 2002949634}
+  - {fileID: 1885111463}
   - {fileID: 1936359380}
   - {fileID: 2070489474}
   - {fileID: 224025013}
-  - {fileID: 1885111463}
