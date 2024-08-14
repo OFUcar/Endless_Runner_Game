@@ -32,7 +32,6 @@ public class LevelObjectManager : MonoBehaviour
             GameObject spawnedObject = Instantiate(_obstaclePrefab, new Vector3(GetRandomXPosition(), 0.5f, currentSpawnZPosition), Quaternion.identity);
             _spawnedObstacles.Add(spawnedObject);
             currentSpawnZPosition += GameSettings.ObstacleZDifference;
-
         }
     }
 
@@ -50,7 +49,6 @@ public class LevelObjectManager : MonoBehaviour
 
         if (nearestObstacle.transform.position.z < playerZPosition - 3f)
         {
-
             float newZPosition = _spawnedObstacles[_nearestObstacleIndex].transform.position.z + GameSettings.ObstacleMaxSpawnedDistanceAccordingToPlayer;
             Vector3 newPosition = new Vector3(GetRandomXPosition(), 0.5f, newZPosition);
 

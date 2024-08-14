@@ -6,8 +6,9 @@ using UnityEngine.SceneManagement;
 public class GameStateController : MonoBehaviour
 {
     public PlayerMovement playerMovement;
-    public ObjectPooling objectPooling;
+    public LevelObjectManager levelObjectManager;
 
+    public GameObject objectPrefab;
     public enum GameState
     {
         Idle,
@@ -59,28 +60,40 @@ public class GameStateController : MonoBehaviour
     {
         playerMovement.isGameRunning = false;
         playerMovement.moveSpeed = 0f;
-        objectPooling.enabled = false;
+        if (levelObjectManager != null)
+        {
+            levelObjectManager.enabled = false;
+        }
     }
 
     private void OnGameRunning()
     {
         playerMovement.isGameRunning = true;
         playerMovement.moveSpeed = 3f;
-        objectPooling.enabled = true;
+        if (levelObjectManager != null)
+        {
+            levelObjectManager.enabled = true;
+        }
     }
 
     private void OnGamePause()
     {
         playerMovement.isGameRunning = false;
         playerMovement.moveSpeed = 0f;
-        objectPooling.enabled = false;
+        if (levelObjectManager != null)
+        {
+            levelObjectManager.enabled = false;
+        }
     }
 
     private void OnGameOver()
     {
         playerMovement.isGameRunning = false;
         playerMovement.moveSpeed = 0f;
-        objectPooling.enabled = false;
+        if (levelObjectManager != null)
+        {
+            levelObjectManager.enabled = false;
+        }
         OnGameRestart();
     }
 
@@ -112,24 +125,14 @@ public class GameStateController : MonoBehaviour
         SetGameState(GameState.Idle);
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-
-        if(objectPooling != null)
-        {
-            objectPooling.ReturnObjectToPool();
-        }
-        else
-        {
-            Debug.Log("Object Pooling Referansýnda büyük sýkýntý var");
-        }
     }
-
 
     private void ReferenceCheck()
     {
-        if (objectPooling == null)
+        if (levelObjectManager == null)
         {
-            objectPooling = FindObjectOfType<ObjectPooling>();
-            if (objectPooling == null)
+            levelObjectManager = FindObjectOfType<LevelObjectManager>();
+            if (levelObjectManager == null)
             {
                 Debug.LogError("object pooling referansý alýnmýyor");
             }
