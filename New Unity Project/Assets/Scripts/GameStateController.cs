@@ -31,6 +31,10 @@ public class GameStateController : MonoBehaviour
         {
             SetGameState(GameState.Running);
         }
+        if (currentState == GameState.GameOver) 
+        {
+            OnGameOver();
+        }
     }
 
     private void SetGameState(GameState state) 
@@ -62,7 +66,7 @@ public class GameStateController : MonoBehaviour
         playerMovement.moveSpeed = 0f;
         if (levelObjectManager != null)
         {
-            levelObjectManager.enabled = false;
+            levelObjectManager.enabled = true;
         }
     }
 
@@ -73,6 +77,10 @@ public class GameStateController : MonoBehaviour
         if (levelObjectManager != null)
         {
             levelObjectManager.enabled = true;
+        }
+        if (Input.GetMouseButtonDown(0))
+        {
+            Debug.Log("Týklama");
         }
     }
 
@@ -123,8 +131,22 @@ public class GameStateController : MonoBehaviour
     private void OnGameRestart()
     {
         SetGameState(GameState.Idle);
-
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        StartCoroutine(WaitForInputAndResetPosition());
+    }
+
+    private IEnumerator WaitForInputAndResetPosition()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+        yield return new WaitForSeconds(0.3f);
+
+        if (playerMovement != null || Input.GetMouseButtonDown(0))
+        {
+            playerMovement.transform.position = Vector3.zero;
+            playerMovement.transform.rotation = Quaternion.identity; 
+        }
+        SetGameState (GameState.Running);
     }
 
     private void ReferenceCheck()
