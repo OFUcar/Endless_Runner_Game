@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,8 @@ public class LevelObjectManager : MonoBehaviour
     private int _nearestObstacleIndex = 0;
 
     private List<GameObject> _spawnedObstacles;
+
+    public static Action ResetObstacles;
 
     private void Start()
     {
@@ -35,10 +38,23 @@ public class LevelObjectManager : MonoBehaviour
         }
     }
 
+    private void ResetObstaclesToStartPosition()
+    {
+        float currentSpawnZPosition = GameSettings.ObstacleStartingZPosition;
+
+        while (currentSpawnZPosition < GameSettings.ObstacleMaxSpawnedDistanceAccordingToPlayer)
+        {
+            float randomXPosition = GetRandomXPosition();
+            GameObject spawnedObject = Instantiate( _obstaclePrefab, new Vector3(randomXPosition, 0.5f, currentSpawnZPosition), Quaternion.identity);
+            _spawnedObstacles.Add(spawnedObject);
+            currentSpawnZPosition += GameSettings.ObstacleZDifference;
+            _nearestObstacleIndex = 0;
+        }
+    }
+
     private float GetRandomXPosition()
     {
         int randomLane = Random.Range(GameSettings.MinLane, GameSettings.MaxLane +1 );
-        //Debug.Log()
         return GameSettings.StartingLaneXPosition + randomLane * GameSettings.XDistanceBetweenLanes;
     }
 
