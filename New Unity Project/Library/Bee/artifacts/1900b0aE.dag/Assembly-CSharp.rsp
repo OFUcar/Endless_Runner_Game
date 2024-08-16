@@ -336,6 +336,7 @@
 "Assets/Scripts/CameraFollow.cs"
 "Assets/Scripts/GameSettings.cs"
 "Assets/Scripts/GameStateController.cs"
+"Assets/Scripts/InputController.cs"
 "Assets/Scripts/LevelObjectManager.cs"
 "Assets/Scripts/PlayerMovement.cs"
 -langversion:9.0
