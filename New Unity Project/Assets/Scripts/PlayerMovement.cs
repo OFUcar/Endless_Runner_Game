@@ -16,6 +16,8 @@ public class PlayerMovement : MonoBehaviour
 
     public static Action OnPlayerCrashed;
 
+    private LevelObjectManager levelObjectManager;
+
     private static readonly Vector3 StartingPosition = new Vector3(0,1,0);
 
     private void Start()
@@ -27,7 +29,7 @@ public class PlayerMovement : MonoBehaviour
     {
         InputController.OnDirectionButtonPressed += OnDirectionButtonPressed;
         GameStateController.OnGameRestart += OnGameRestart;
-        LevelObjectManager.ResetObstacles += ResetObstacles;
+        //LevelObjectManager.ResetObstacles += ResetObstacles;
     }
 
     private void OnGameRestart()
@@ -35,11 +37,12 @@ public class PlayerMovement : MonoBehaviour
         transform.position = StartingPosition;
         SetPlayerToStart(); 
         _currentLane = 2;
+        ResetObstacles();
     }
 
     private void ResetObstacles()
     {
-        //ResetObstaclesToStartPosition();
+        levelObjectManager.ResetObstaclesToStartPosition();
     }
 
     private void OnDirectionButtonPressed(int direction)
@@ -51,7 +54,7 @@ public class PlayerMovement : MonoBehaviour
     {
         InputController.OnDirectionButtonPressed -= OnDirectionButtonPressed;
         GameStateController.OnGameRestart -= OnGameRestart;
-        LevelObjectManager.ResetObstacles -= ResetObstacles;
+        //LevelObjectManager.ResetObstacles -= ResetObstacles;
     }
 
     private void Update()
