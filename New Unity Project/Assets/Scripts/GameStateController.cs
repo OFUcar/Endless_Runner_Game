@@ -6,9 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class GameStateController : MonoBehaviour
 {
-    //public PlayerMovement playerMovement;
-    //public LevelObjectManager levelObjectManager;
-
     private enum GameState
     {
         Idle,

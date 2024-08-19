@@ -29,7 +29,6 @@ public class PlayerMovement : MonoBehaviour
     {
         InputController.OnDirectionButtonPressed += OnDirectionButtonPressed;
         GameStateController.OnGameRestart += OnGameRestart;
-        //LevelObjectManager.ResetObstacles += ResetObstacles;
     }
 
     private void OnGameRestart()
@@ -37,14 +36,8 @@ public class PlayerMovement : MonoBehaviour
         transform.position = StartingPosition;
         SetPlayerToStart(); 
         _currentLane = 2;
-        ResetObstacles();
     }
-
-    private void ResetObstacles()
-    {
-        levelObjectManager.ResetObstaclesToStartPosition();
-    }
-
+     
     private void OnDirectionButtonPressed(int direction)
     {
         _currentLane =Mathf.Clamp(_currentLane+direction, GameSettings.MinLane, GameSettings.MaxLane);
@@ -54,7 +47,6 @@ public class PlayerMovement : MonoBehaviour
     {
         InputController.OnDirectionButtonPressed -= OnDirectionButtonPressed;
         GameStateController.OnGameRestart -= OnGameRestart;
-        //LevelObjectManager.ResetObstacles -= ResetObstacles;
     }
 
     private void Update()

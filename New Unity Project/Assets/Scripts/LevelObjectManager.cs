@@ -14,6 +14,8 @@ public class LevelObjectManager : MonoBehaviour
 
     public static Action ResetObstacles;
 
+    public static Action OnObstaclesReset;
+
     private void Start()
     {
         SpawnObstacles();
@@ -22,6 +24,30 @@ public class LevelObjectManager : MonoBehaviour
     private void Update()
     {
         CarryObstacles();
+    }
+
+    private void OnEnable()
+    {
+        GameStateController.OnGameRestart += OnGameRestartTry;
+    }
+
+    private void OnDisable() 
+    {
+        GameStateController.OnGameRestart += OnGameRestartTry;
+    }
+
+    private void OnGameRestartTry()
+    {
+         Debug.Log("BEn Çalýþtýmm");
+
+         float currentSpawnZPosition = GameSettings.ObstacleStartingZPosition;
+
+         while (currentSpawnZPosition < GameSettings.ObstacleMaxSpawnedDistanceAccordingToPlayer)
+         {
+             GameObject spawnedObject = Instantiate(_obstaclePrefab, new Vector3(GetRandomXPosition(), 0.5f, currentSpawnZPosition), Quaternion.identity);
+             _spawnedObstacles.Add(spawnedObject);
+             currentSpawnZPosition += GameSettings.ObstacleZDifference;
+         }
     }
 
     private void SpawnObstacles()
@@ -36,31 +62,6 @@ public class LevelObjectManager : MonoBehaviour
             _spawnedObstacles.Add(spawnedObject);
             currentSpawnZPosition += GameSettings.ObstacleZDifference;
         }
-    }
-
-    public void ResetObstaclesToStartPosition()
-    {
-        for (int i =0; i<_nearestObstacleIndex; i++ )
-        {
-            GameObject obstacleToReset = _spawnedObstacles[i];
-
-            float newZPosition = GameSettings.ObstacleStartingZPosition + i * GameSettings.ObstacleZDifference;
-            Vector3 newObstaclesPosition = new Vector3(GetRandomXPosition(), 0.5f, newZPosition);
-
-            if (_spawnedObstacles != null)
-            {
-                Debug.LogError("Spawned Obstacles listesi null!");
-            }
-
-            obstacleToReset.transform.position = newObstaclesPosition;
-        }
-
-        for (int i = _nearestObstacleIndex; i == 0; i--)
-        {
-            CarryObstacles();
-        }
-
-        _nearestObstacleIndex = 0;
     }
 
     private float GetRandomXPosition()

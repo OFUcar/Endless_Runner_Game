@@ -39,5 +39,3 @@ public class CameraFollow : MonoBehaviour
     }
 
 }
-
-// _nearestObsctale falan sýfýrkanacak
