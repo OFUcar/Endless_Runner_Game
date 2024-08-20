@@ -44,6 +44,7 @@ public class LevelObjectManager : MonoBehaviour
             obstacless.transform.position = new Vector3(GetRandomXPosition(), 0.5f, currentSpawnZPosition);
             currentSpawnZPosition += GameSettings.ObstacleZDifference;
         }
+        _nearestObstacleIndex = 0;
     }
 
     private void SpawnObstacles()
