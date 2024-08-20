@@ -39,6 +39,7 @@ public class GameStateController : MonoBehaviour
         if (_currentState == GameState.GameOver)
         {
             RestartGame();
+            SetGameState(GameState.Idle);
         }
     }
 

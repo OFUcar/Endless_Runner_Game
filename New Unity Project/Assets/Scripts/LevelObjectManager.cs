@@ -38,9 +38,7 @@ public class LevelObjectManager : MonoBehaviour
 
     private void OnGameRestartTry()
     {
-        Debug.Log("BEn Çalýþtýmm");
-
-         float currentSpawnZPosition = 10f;
+        float currentSpawnZPosition = 10f;
         foreach (GameObject obstacless in _spawnedObstacles)
         {
             obstacless.transform.position = new Vector3(GetRandomXPosition(), 0.5f, currentSpawnZPosition);
