@@ -38,27 +38,26 @@ public class LevelObjectManager : MonoBehaviour
 
     private void OnGameRestartTry()
     {
-         Debug.Log("BEn Çalýþtýmm");
+        Debug.Log("BEn Çalýþtýmm");
 
-         float currentSpawnZPosition = GameSettings.ObstacleStartingZPosition;
-
-         while (currentSpawnZPosition < GameSettings.ObstacleMaxSpawnedDistanceAccordingToPlayer)
-         {
-             GameObject spawnedObject = Instantiate(_obstaclePrefab, new Vector3(GetRandomXPosition(), 0.5f, currentSpawnZPosition), Quaternion.identity);
-             _spawnedObstacles.Add(spawnedObject);
-             currentSpawnZPosition += GameSettings.ObstacleZDifference;
-         }
+         float currentSpawnZPosition = 10f;
+        foreach (GameObject obstacless in _spawnedObstacles)
+        {
+            obstacless.transform.position = new Vector3(GetRandomXPosition(), 0.5f, currentSpawnZPosition);
+            currentSpawnZPosition += GameSettings.ObstacleZDifference;
+        }
     }
 
     private void SpawnObstacles()
     {
         _spawnedObstacles = new List<GameObject>();
-
+        
         float currentSpawnZPosition = GameSettings.ObstacleStartingZPosition;
 
         while (currentSpawnZPosition < GameSettings.ObstacleMaxSpawnedDistanceAccordingToPlayer)
         {
-            GameObject spawnedObject = Instantiate(_obstaclePrefab, new Vector3(GetRandomXPosition(), 0.5f, currentSpawnZPosition), Quaternion.identity);
+            GameObject spawnedObject = Instantiate(_obstaclePrefab);
+            spawnedObject.transform.position = new Vector3(GetRandomXPosition(), 0.5f, currentSpawnZPosition);
             _spawnedObstacles.Add(spawnedObject);
             currentSpawnZPosition += GameSettings.ObstacleZDifference;
         }

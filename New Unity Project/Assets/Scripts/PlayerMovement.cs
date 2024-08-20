@@ -48,8 +48,8 @@ public class PlayerMovement : MonoBehaviour
         InputController.OnDirectionButtonPressed -= OnDirectionButtonPressed;
         GameStateController.OnGameRestart -= OnGameRestart;
     }
-
     private void Update()
+
     {
         if (!GameStateController.IsGameRunning) 
         {
