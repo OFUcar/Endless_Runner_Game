@@ -12,4 +12,8 @@ public static class GameSettings
     public static readonly float ObstacleZDifference = 2f;
     public static readonly float ObstacleMaxSpawnedDistanceAccordingToPlayer = 200f;
 
+    public static readonly float CoinStartingZPosition = 5f;
+    public static readonly float CoinZDifference = 2f;
+    public static readonly float CoinMaxSpawnedDistanceAccordingToPlayer = 100f;
+
 }
