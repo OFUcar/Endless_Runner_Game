@@ -15,10 +15,10 @@ public class LevelObjectManager : MonoBehaviour
     private int _nearestObstacleIndex = 0;
     private int _nearestCoinIndex = 0;
 
-    //private int _collectedCoins = 0;
-
     private List<GameObject> _spawnedCoins;
     private List<GameObject> _spawnedObstacles;
+
+    private PlayerMovement _playerMovement;
 
     public static Action ResetObstacles;
 
@@ -28,6 +28,7 @@ public class LevelObjectManager : MonoBehaviour
     {
         SpawnObstacles();
         SpawnCoins();
+        _playerMovement = FindObjectOfType<PlayerMovement>();
     }
 
     private void Update()
@@ -55,6 +56,23 @@ public class LevelObjectManager : MonoBehaviour
             currentSpawnZPosition += GameSettings.ObstacleZDifference;
         }
         _nearestObstacleIndex = 0;
+        
+        currentSpawnZPosition = 5f;
+        foreach (GameObject coinss in _spawnedCoins)
+        {
+            coinss.transform.position = new Vector3(GetRandomXPosition(), 0.75f, currentSpawnZPosition);
+            currentSpawnZPosition += GameSettings.CoinZDifference;
+        }
+        _nearestCoinIndex = 0;
+
+        if (_playerMovement != null) 
+        {
+            _playerMovement.ResetCollectedCoins();
+        }
+        else
+        {
+            Debug.Log("Player Movement'dan hata mesajý geliyor");
+        }
     }
 
     private void SpawnObstacles()
@@ -122,16 +140,17 @@ public class LevelObjectManager : MonoBehaviour
     private void CarryCoins()
     {
         float playerZPosition = CurrentPlayerZPosition();
+
         GameObject nearestCoin = _spawnedCoins[_nearestCoinIndex];
 
-        if (nearestCoin.transform.position.z < playerZPosition -3f) 
+        if (nearestCoin.transform.position.z < playerZPosition -3f)
         {
             float newZPosition = _spawnedCoins[_nearestCoinIndex].transform.position.z + GameSettings.CoinMaxSpawnedDistanceAccordingToPlayer;
             Vector3 newPosition = new Vector3(GetRandomXPosition(), 0.75f, newZPosition);
 
             nearestCoin.transform.position = newPosition;
-            nearestCoin.transform.rotation = Quaternion.Euler(-90f, 0f, 0f);
-            nearestCoin.transform.localScale = new Vector3(0f, 0.05f, 0f);
+
+            nearestCoin.SetActive(true);
 
             _nearestCoinIndex++;
 
@@ -141,5 +160,4 @@ public class LevelObjectManager : MonoBehaviour
             }
         }
     }
-
 }

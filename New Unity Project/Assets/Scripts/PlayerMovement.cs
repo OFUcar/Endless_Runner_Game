@@ -8,6 +8,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     private int _currentLane = 2;
+    private int _collectedCoins = 0;
 
     private const float MOVE_SPEED = 3f;
     private const float LaneSwitchSpeed = 30f;
@@ -15,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
     public Vector3 targetPosition;
 
     public static Action OnPlayerCrashed;
+    public static Action OnCoinCollected;
 
     private LevelObjectManager levelObjectManager;
 
@@ -29,6 +31,7 @@ public class PlayerMovement : MonoBehaviour
     {
         InputController.OnDirectionButtonPressed += OnDirectionButtonPressed;
         GameStateController.OnGameRestart += OnGameRestart;
+        OnCoinCollected += HandleCoinCollected;
     }
 
     private void OnGameRestart()
@@ -36,6 +39,12 @@ public class PlayerMovement : MonoBehaviour
         transform.position = StartingPosition;
         SetPlayerToStart(); 
         _currentLane = 2;
+    }
+
+    private void HandleCoinCollected()
+    {
+        _collectedCoins++;
+        Debug.Log("Toplanan Coin sayýsý:" +_collectedCoins);
     }
      
     private void OnDirectionButtonPressed(int direction)
@@ -47,6 +56,7 @@ public class PlayerMovement : MonoBehaviour
     {
         InputController.OnDirectionButtonPressed -= OnDirectionButtonPressed;
         GameStateController.OnGameRestart -= OnGameRestart;
+        OnCoinCollected -= HandleCoinCollected;
     }
     private void Update()
 
@@ -62,7 +72,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void SetPlayerToStart()
     {
-        transform.position = new Vector3(0, 1, 0);
+        transform.position = StartingPosition;
         _currentLane = 2;
         targetPosition = transform.position;
     }
@@ -85,5 +95,16 @@ public class PlayerMovement : MonoBehaviour
         {
             OnPlayerCrashed?.Invoke();
         }
+        if(other.CompareTag("Coin"))
+        {
+            other.gameObject.SetActive(false);
+            OnCoinCollected?.Invoke();
+        }
     }
+    public void ResetCollectedCoins()
+    {
+        _collectedCoins = 0;
+        Debug.Log("Coin Sayýsý Resetlendi!!!!");
+    }
+
 }

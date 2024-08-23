@@ -37,10 +37,6 @@
           "SelectedChildIndex": 3,
           "Children": [
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
-            },
-            {
               "$type": "Document",
               "DocumentIndex": 2,
               "Title": "GameStateController.cs",
@@ -48,9 +44,14 @@
               "RelativeDocumentMoniker": "Assets\\Scripts\\GameStateController.cs",
               "ToolTip": "D:\\GitHub\\Endless_Runner_Game\\New Unity Project\\Assets\\Scripts\\GameStateController.cs",
               "RelativeToolTip": "Assets\\Scripts\\GameStateController.cs",
-              "ViewState": "AQIAAD8AAAAAAAAAAAAuwDEAAAAAAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAFwAAAAMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-06T08:17:11.791Z"
+              "WhenOpened": "2024-08-06T08:17:11.791Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
             },
             {
               "$type": "Document",
@@ -60,7 +61,7 @@
               "RelativeDocumentMoniker": "Assets\\Scripts\\PlayerMovement.cs",
               "ToolTip": "D:\\GitHub\\Endless_Runner_Game\\New Unity Project\\Assets\\Scripts\\PlayerMovement.cs",
               "RelativeToolTip": "Assets\\Scripts\\PlayerMovement.cs",
-              "ViewState": "AQIAADoAAAAAAAAAAAAYwFcAAAAFAAAA",
+              "ViewState": "AQIAAFEAAAAAAAAAAAAqwGoAAAAwAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-06T08:17:08.449Z",
               "EditorCaption": ""
@@ -71,9 +72,9 @@
               "Title": "LevelObjectManager.cs",
               "DocumentMoniker": "D:\\GitHub\\Endless_Runner_Game\\New Unity Project\\Assets\\Scripts\\LevelObjectManager.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\LevelObjectManager.cs",
-              "ToolTip": "D:\\GitHub\\Endless_Runner_Game\\New Unity Project\\Assets\\Scripts\\LevelObjectManager.cs",
-              "RelativeToolTip": "Assets\\Scripts\\LevelObjectManager.cs",
-              "ViewState": "AQIAAHoAAAAAAAAAAAAAwH0AAAAAAAAA",
+              "ToolTip": "D:\\GitHub\\Endless_Runner_Game\\New Unity Project\\Assets\\Scripts\\LevelObjectManager.cs*",
+              "RelativeToolTip": "Assets\\Scripts\\LevelObjectManager.cs*",
+              "ViewState": "AQIAAIEAAAAAAAAAAAAAAKEAAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-07T13:03:41.686Z",
               "EditorCaption": ""
@@ -110,7 +111,7 @@
               "RelativeDocumentMoniker": "Assets\\Scripts\\GameSettings.cs",
               "ToolTip": "D:\\GitHub\\Endless_Runner_Game\\New Unity Project\\Assets\\Scripts\\GameSettings.cs",
               "RelativeToolTip": "Assets\\Scripts\\GameSettings.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAuwBMAAAAAAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAuwBAAAABMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-08T16:19:19.467Z"
             }
