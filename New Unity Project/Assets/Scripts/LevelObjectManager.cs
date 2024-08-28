@@ -11,9 +11,12 @@ public class LevelObjectManager : MonoBehaviour
     private GameObject _obstaclePrefab;
     [SerializeField]
     private GameObject _coinPrefab;
+    [SerializeField]
+    private GameObject[] _groundPrefabs;
 
     private int _nearestObstacleIndex = 0;
     private int _nearestCoinIndex = 0;
+    private int _nearestGroundIndex = 0;
 
     private List<GameObject> _spawnedCoins;
     private List<GameObject> _spawnedObstacles;
@@ -26,6 +29,7 @@ public class LevelObjectManager : MonoBehaviour
 
     private void Start()
     {
+        SpawnGrounds();
         SpawnObstacles();
         SpawnCoins();
         _playerMovement = FindObjectOfType<PlayerMovement>();
@@ -35,6 +39,7 @@ public class LevelObjectManager : MonoBehaviour
     {
         CarryObstacles();
         CarryCoins();
+        CarryGrounds();
     }
 
     private void OnEnable()
@@ -132,6 +137,8 @@ public class LevelObjectManager : MonoBehaviour
         {
             GameObject spawnedCoin = Instantiate(_coinPrefab);
             spawnedCoin.transform.position = new Vector3(GetRandomXPosition(), 0.75f, currentSpawnZPosition);
+            spawnedCoin.transform.rotation = Quaternion.Euler(-90f, 0f, 0f);
+            spawnedCoin.transform.localScale = new Vector3(1f, 0.05f,1f);
             _spawnedCoins.Add(spawnedCoin);
             currentSpawnZPosition += GameSettings.CoinZDifference;
         } 
@@ -160,4 +167,47 @@ public class LevelObjectManager : MonoBehaviour
             }
         }
     }
+
+    private void SpawnGrounds()
+    {
+        float startGroundZPosition = 100f;
+
+        for (int i = 0; i < _groundPrefabs.Length; i++)
+        {
+            GameObject ground = Instantiate(_groundPrefabs[i]);
+            ground.transform.position = new Vector3(0, 0, startGroundZPosition);
+            ground.transform.localScale = new Vector3(1, 1, 50);
+            _groundPrefabs[i] = ground;
+            startGroundZPosition += ground.transform.localScale.z * 2;
+        }
+    }
+    private void CarryGrounds()
+    {
+        float playerZPosition = CurrentPlayerZPosition();
+        float groundLength = 10f;
+        float offset = 40f;
+
+        GameObject nearestGround = _groundPrefabs[_nearestGroundIndex];
+
+        if (nearestGround.transform.position.z + groundLength + offset < playerZPosition)
+        {
+            float farthestZPosition = float.MinValue;
+            for (int i = 0; i < _groundPrefabs.Length; i++)
+            {
+                if (_groundPrefabs[i].transform.position.z > farthestZPosition)
+                {
+                    farthestZPosition = _groundPrefabs[i].transform.position.z;
+                }
+            }
+
+            nearestGround.transform.position = new Vector3(0, 0, farthestZPosition + groundLength + offset);
+
+            _nearestGroundIndex++;
+            if (_nearestGroundIndex >= _groundPrefabs.Length)
+            {
+                _nearestGroundIndex = 0;
+            }
+        }
+    }
+
 }
