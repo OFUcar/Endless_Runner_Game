@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/gamescenes_1.unity
     guid: 23cce77cc028edf428e2a602552118f9
+  - enabled: 1
+    path: Assets/Scenes/ResumeMenu.unity
+    guid: fce7874c03d26d04e9b2389fce15ee9c
   m_configObjects: {}

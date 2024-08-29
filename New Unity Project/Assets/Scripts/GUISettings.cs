@@ -14,4 +14,27 @@ public class GUISettings : MonoBehaviour
     {
         Application.Quit();
     }
+
+    public void PauseButton()
+    {
+        Time.timeScale = 0; 
+        SceneManager.LoadSceneAsync("ResumeMenu", LoadSceneMode.Additive);
+    }
+
+    public void ResumeGame()
+    {
+        StartCoroutine(ResumeGameCoroutine());
+    }
+
+    private IEnumerator ResumeGameCoroutine()
+    {
+        AsyncOperation unloadOperation = SceneManager.UnloadSceneAsync("ResumeMenu");
+        while (!unloadOperation.isDone)
+        {
+            yield return null;
+        }
+
+        Time.timeScale = 1.0f; 
+    }
+
 }
